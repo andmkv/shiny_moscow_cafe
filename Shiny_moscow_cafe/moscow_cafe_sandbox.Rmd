@@ -1,0 +1,49 @@
+---
+title: "am_sandbox"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r cars}
+library(tidyverse)
+library(leaflet)
+library(readxl)
+```
+
+
+```{r pressure, echo=FALSE}
+# Грузим excel-файл
+
+setwd("C:/Users/Andrey/Dropbox/Coursera/Netology_Infographics/Кафе Москвы")
+
+cafe_msk <- read_excel("cafe.xlsx", sheet = "Sheet0") %>% mutate(Longitude_WGS84 = as.numeric(Longitude_WGS84), Latitude_WGS84 = as.numeric(Latitude_WGS84)) #%>% head(100)
+
+content <- paste(sep = "<br/>",
+  "<b><a href='http://www.samurainoodle.com'>Samurai Noodle</a></b>",
+  "606 5th Ave. S",
+  "Seattle, WA 98138"
+)
+
+map <- NA
+
+map <- leaflet() %>% addTiles()
+map <- addMarkers(map, 
+                  lng = cafe_msk$Longitude_WGS84, 
+                  lat = cafe_msk$Latitude_WGS84, 
+                  clusterOptions = markerClusterOptions(), 
+                  popup = paste(paste("<b>",cafe_msk$Name, "</b>", sep=""),
+                                cafe_msk$TypeObject,
+                                cafe_msk$Address,
+                                cafe_msk$PublicPhone,
+                                sep = "<br>"),
+                  label = cafe_msk$Name)
+map <- addProviderTiles(map, providers$CartoDB.Positron)
+#map <- addPopups(map, lng = cafe_msk$Longitude_WGS84, lat = cafe_msk$Latitude_WGS84, popup = paste(paste("<b>",cafe_msk$Name, "</b>", sep=""), cafe_msk$TypeObject, cafe_msk$Address, cafe_msk$PublicPhone, sep = "<br>"))
+
+map
+```
+

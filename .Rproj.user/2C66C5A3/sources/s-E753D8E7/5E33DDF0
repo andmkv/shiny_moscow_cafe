@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1554234601812.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "50653358",
+    "id" : "5E33DDF0",
+    "lastKnownWriteTime" : 1554234902,
+    "last_content_update" : 1554234902079,
+    "path" : "~/GitHub/shiny_moscow_cafe/Shiny_moscow_cafe/moscow_cafe_sandbox.Rmd",
+    "project_path" : "Shiny_moscow_cafe/moscow_cafe_sandbox.Rmd",
+    "properties" : {
+        "cursorPosition" : "46,3",
+        "scrollLine" : "21"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
