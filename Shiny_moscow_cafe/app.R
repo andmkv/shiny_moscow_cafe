@@ -11,7 +11,8 @@ library(leaflet)
 library(readxl)
 library(RColorBrewer)
 
-cafe_msk <- read_excel("cafe.xlsx", sheet = "Sheet0") %>% mutate(Longitude_WGS84 = as.numeric(Longitude_WGS84), Latitude_WGS84 = as.numeric(Latitude_WGS84))
+cafe_msk <- read_excel("cafe.xlsx", sheet = "Sheet0") %>% mutate(Longitude_WGS84 = as.numeric(Longitude_WGS84), Latitude_WGS84 = as.numeric(Latitude_WGS84), TypeObject = as.factor(TypeObject)) %>% head(100)
+object_types <- levels(unique(cafe_msk$TypeObject))
 
 
 # Define UI for application that draws a histogram
@@ -24,20 +25,12 @@ ui <- bootstrapPage(
   tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
   leafletOutput("map", width = "100%", height = "100%"),
   absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
-                draggable = TRUE, top = 60, left = "auto", right = 20, bottom = "auto",
+                draggable = FALSE, top = 60, left = "auto", right = 20, bottom = "auto",
                 width = 330, height = "auto",
                 
-                h2("Общепит Москвы"),
+                h2("Весь общепит Москвы"),
                 
-                selectInput("color", "Color", "vars"),
-                selectInput("size", "Size", "vars", selected = "adultpop"),
-                conditionalPanel("input.color == 'superzip' || input.size == 'superzip'",
-                                 # Only prompt for threshold when coloring or sizing by superzip
-                                 numericInput("threshold", "SuperZIP threshold (top n percentile)", 5)
-                ),
-                
-                plotOutput("histCentile", height = 200),
-                plotOutput("scatterCollegeIncome", height = 250)
+                selectInput("select_type", "Фильтр по типу", c("Все типы", object_types))
   )
 )
 
@@ -47,6 +40,18 @@ server <- function(input, output) {
   #browser()
   
    filtered <- reactiveValues(data = cafe_msk)
+   
+   #browser()
+   
+   observeEvent(input$select_type, {
+     browser()
+     if (input$select_type == "Все типы") {
+       filtered$data <- cafe_msk
+     } else {
+       filtered$data <- filtered$data %>% filter(TypeObject == input$select_type)
+     }
+     
+   })
    
    output$map <- renderLeaflet({
      map <- NA
