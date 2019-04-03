@@ -9,9 +9,9 @@ library(shiny)
 library(tidyverse)
 library(leaflet)
 library(readxl)
-library(RColorBrewer)
+library(shinyWidgets)
 
-cafe_msk <- read_excel("cafe.xlsx", sheet = "Sheet0") %>% mutate(Longitude_WGS84 = as.numeric(Longitude_WGS84), Latitude_WGS84 = as.numeric(Latitude_WGS84), TypeObject = as.factor(TypeObject)) %>% head(100)
+cafe_msk <- read_excel("cafe.xlsx", sheet = "Sheet0") %>% mutate(Longitude_WGS84 = as.numeric(Longitude_WGS84), Latitude_WGS84 = as.numeric(Latitude_WGS84), TypeObject = as.factor(TypeObject), SeatsCount = as.numeric(SeatsCount)) #%>% head(100)
 object_types <- levels(unique(cafe_msk$TypeObject))
 
 
@@ -30,12 +30,16 @@ ui <- bootstrapPage(
                 
                 h2("Весь общепит Москвы"),
                 
-                selectInput("select_type", "Фильтр по типу", c("Все типы", object_types))
+                selectInput("select_type", "Фильтр по типу", c("Все типы", object_types)),
+                
+                sliderInput("slider_seats", "Количество мест", min = min(cafe_msk$SeatsCount), max = max(cafe_msk$SeatsCount), value = c(0, max(cafe_msk$SeatsCount))),
+                
+                actionButton("btn_apply", "Применить фильтр")
   )
 )
 
 # Define server logic required to draw a histogram
-server <- function(input, output) {
+server <- function(input, output, session) {
    
   #browser()
   
@@ -43,14 +47,28 @@ server <- function(input, output) {
    
    #browser()
    
-   observeEvent(input$select_type, {
-     browser()
+   observeEvent(input$btn_apply, {
      if (input$select_type == "Все типы") {
-       filtered$data <- cafe_msk
+       #browser()
+       filtered_data <- cafe_msk %>% filter(SeatsCount >= input$slider_seats[1], SeatsCount <= input$slider_seats[2])
      } else {
-       filtered$data <- filtered$data %>% filter(TypeObject == input$select_type)
+       filtered_data <- cafe_msk %>% filter(TypeObject == input$select_type, SeatsCount >= input$slider_seats[1], SeatsCount <= input$slider_seats[2])
      }
      
+     if(nrow(filtered_data) == 0) {
+       filtered$data <- cafe_msk
+       updateSliderInput(session, "slider_seats", value = c(0, max(cafe_msk$SeatsCount)))
+       updateSelectInput(session, "select_type", selected = "Все типы")
+       
+       sendSweetAlert(
+         session = session,
+         title = "Ошибка!",
+         text = "Ничего не найдено.",
+         type = "error"
+       )
+     } else {
+       filtered$data <- filtered_data
+     }
    })
    
    output$map <- renderLeaflet({

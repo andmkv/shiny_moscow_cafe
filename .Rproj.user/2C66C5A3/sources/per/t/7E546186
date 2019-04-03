@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1554282610842.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "7E546186",
+    "lastKnownWriteTime" : 2475636339810066802,
+    "last_content_update" : 1554282610842,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "9ADF5F14",
+        "caption" : "cafe_msk",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=cafe_msk&cache_key=9ADF5F14",
+        "displayedObservations" : 14264,
+        "environment" : "",
+        "object" : "cafe_msk",
+        "preview" : 0,
+        "totalObservations" : 14264,
+        "variables" : 15
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "131224645",
     "id" : "FE86CF2",
-    "lastKnownWriteTime" : 1554236935,
-    "last_content_update" : 1554236935081,
+    "lastKnownWriteTime" : 1554284472,
+    "last_content_update" : 1554284472970,
     "path" : "~/GitHub/shiny_moscow_cafe/Shiny_moscow_cafe/app.R",
     "project_path" : "Shiny_moscow_cafe/app.R",
     "properties" : {
-        "cursorPosition" : "64,53",
-        "scrollLine" : "38"
+        "cursorPosition" : "66,23",
+        "scrollLine" : "51"
     },
     "relative_order" : 1,
     "source_on_save" : false,

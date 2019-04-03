@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(leaflet)
 library(readxl)
+library(ggplot2)
 ```
 
 
@@ -45,5 +46,15 @@ map <- addProviderTiles(map, providers$CartoDB.Positron)
 #map <- addPopups(map, lng = cafe_msk$Longitude_WGS84, lat = cafe_msk$Latitude_WGS84, popup = paste(paste("<b>",cafe_msk$Name, "</b>", sep=""), cafe_msk$TypeObject, cafe_msk$Address, cafe_msk$PublicPhone, sep = "<br>"))
 
 map
+```
+
+```{r}
+foodIcons <- iconList(
+  restaurant = makeIcon("utensils.png", "utensils@2x.png", 18, 18)
+)
+```
+
+```{r}
+ggplot(data = cafe_msk, mapping = aes(x = AdmArea, y = SeatsCount, fill = TypeObject)) + geom_bar(stat = "identity")
 ```
 

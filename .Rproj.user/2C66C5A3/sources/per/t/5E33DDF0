@@ -5,16 +5,16 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "721795461",
+    "hash" : "2092175166",
     "id" : "5E33DDF0",
-    "lastKnownWriteTime" : 1554236428,
-    "last_content_update" : 1554236428273,
+    "lastKnownWriteTime" : 1554282755,
+    "last_content_update" : 1554282755440,
     "path" : "~/GitHub/shiny_moscow_cafe/Shiny_moscow_cafe/moscow_cafe_sandbox.Rmd",
     "project_path" : "Shiny_moscow_cafe/moscow_cafe_sandbox.Rmd",
     "properties" : {
-        "cursorPosition" : "20,1",
-        "last_setup_crc32" : "E753D8E7bb338d19",
-        "scrollLine" : "13"
+        "cursorPosition" : "58,3",
+        "last_setup_crc32" : "",
+        "scrollLine" : "0"
     },
     "relative_order" : 2,
     "source_on_save" : false,
