@@ -9,7 +9,6 @@ library(shiny)
 library(tidyverse)
 library(leaflet)
 library(readxl)
-library(shinyWidgets)
 
 cafe_msk <- read_excel("cafe.xlsx", sheet = "Sheet0") %>% mutate(Longitude_WGS84 = as.numeric(Longitude_WGS84), Latitude_WGS84 = as.numeric(Latitude_WGS84), TypeObject = as.factor(TypeObject), SeatsCount = as.numeric(SeatsCount)) #%>% head(100)
 object_types <- levels(unique(cafe_msk$TypeObject))

@@ -12,15 +12,15 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "cacheKey" : "9ADF5F14",
+        "cacheKey" : "67E08DC8",
         "caption" : "cafe_msk",
-        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=cafe_msk&cache_key=9ADF5F14",
-        "displayedObservations" : 14264,
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=cafe_msk&cache_key=67E08DC8",
+        "displayedObservations" : "14264",
         "environment" : "",
         "object" : "cafe_msk",
-        "preview" : 0,
-        "totalObservations" : 14264,
-        "variables" : 15
+        "preview" : "0",
+        "totalObservations" : "14264",
+        "variables" : "15"
     },
     "relative_order" : 3,
     "source_on_save" : false,
