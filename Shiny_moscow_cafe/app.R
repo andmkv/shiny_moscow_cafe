@@ -37,18 +37,14 @@ ui <- bootstrapPage(
   )
 )
 
-# Define server logic required to draw a histogram
 server <- function(input, output, session) {
    
-  #browser()
   
    filtered <- reactiveValues(data = cafe_msk)
    
-   #browser()
    
    observeEvent(input$btn_apply, {
      if (input$select_type == "Все типы") {
-       #browser()
        filtered_data <- cafe_msk %>% filter(SeatsCount >= input$slider_seats[1], SeatsCount <= input$slider_seats[2])
      } else {
        filtered_data <- cafe_msk %>% filter(TypeObject == input$select_type, SeatsCount >= input$slider_seats[1], SeatsCount <= input$slider_seats[2])
@@ -85,7 +81,6 @@ server <- function(input, output, session) {
                                      sep = "<br>"),
                        label = filtered$data$Name)
      map <- addProviderTiles(map, providers$CartoDB.Positron)
-     #map <- addPopups(map, lng = cafe_msk$Longitude_WGS84, lat = cafe_msk$Latitude_WGS84, popup = paste(paste("<b>",cafe_msk$Name, "</b>", sep=""), cafe_msk$TypeObject, cafe_msk$Address, cafe_msk$PublicPhone, sep = "<br>"))
      
      map
    })
